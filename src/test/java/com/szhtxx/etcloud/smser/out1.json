@@ -1,0 +1,134 @@
+{
+  "bdrList": [],
+  "doFail": 0,
+  "doSucc": 1,
+  "invoiceSList": [
+    {
+      "amounts": 999999.90,
+      "billNO": "200_20230518175905203_0001",
+      "billNOList": [
+        "1687821024403393536"
+      ],
+      "invErr": 0.0010,
+      "invTaxRate": [
+        0.09
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999999.90,
+          "amountsIncTax": 1089999.89,
+          "amts": 9.999999,
+          "billDetailNO": "1687821024403392512",
+          "billNO": "1687821024403393536",
+          "by1": "",
+          "detailIdSet": [
+            {
+              "amounts": 999999.9000000000,
+              "amts": 9.9999990000,
+              "billDetailNO": "1687821024403392512",
+              "billNO": "1687821024403393536",
+              "price": 100000.0000000000,
+              "taxAmt": 89999.99
+            }
+          ],
+          "goodsCode": "3050400000000000000",
+          "goodsModel": "",
+          "goodsName": "*建筑服务**建筑服务*装饰服务",
+          "goodsTaxNo": "3050400000000000000",
+          "goodsUnit": "",
+          "includeTax": 0,
+          "invDetailErr": 0.0010,
+          "invoiceDetailNO": "6465f6e942426e000187d4de",
+          "invoiceNO": "6465f6e942426e000187d4dd",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 100000.00000000,
+          "priceIncTax": 109000.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1089999.89,
+          "taxAmt": 89999.99,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.09
+        }
+      ],
+      "invoiceKind": 51,
+      "invoiceNO": "6465f6e942426e000187d4dd",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 0,
+      "remark": "金额累计超限开票",
+      "taxAmt": 89999.99
+    },
+    {
+      "amounts": 0.1000000000,
+      "billNO": "200_20230518175905203_0001",
+      "billNOList": [
+        "1687821024403393536"
+      ],
+      "invErr": -0.0010,
+      "invTaxRate": [
+        0.09
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 0.1000000000,
+          "amountsIncTax": 0.1100000000,
+          "amts": 0.0000010000,
+          "billDetailNO": "1687821024403392512",
+          "billNO": "1687821024403393536",
+          "by1": "",
+          "detailIdSet": [
+            {
+              "amounts": 0.1000000000,
+              "amts": 0.000001,
+              "billDetailNO": "1687821024403392512",
+              "billNO": "1687821024403393536",
+              "price": 100000.0000000000,
+              "taxAmt": 0.0100000000
+            }
+          ],
+          "goodsCode": "3050400000000000000",
+          "goodsModel": "",
+          "goodsName": "*建筑服务**建筑服务*装饰服务",
+          "goodsTaxNo": "3050400000000000000",
+          "goodsUnit": "",
+          "includeTax": 0,
+          "invDetailErr": -0.0010,
+          "invoiceDetailNO": "6465f6e942426e000187d4e0",
+          "invoiceNO": "6465f6e942426e000187d4df",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 100000.00000000,
+          "priceIncTax": 109000.00000000,
+          "splitSign": 1,
+          "taxAmounts": 0.1100000000,
+          "taxAmt": 0.01,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.09
+        }
+      ],
+      "invoiceKind": 51,
+      "invoiceNO": "6465f6e942426e000187d4df",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 1,
+      "remark": "最后一行开票",
+      "taxAmt": 0.01
+    }
+  ],
+  "totals": 1
+}
