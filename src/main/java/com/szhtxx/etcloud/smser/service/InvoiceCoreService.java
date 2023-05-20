@@ -357,10 +357,7 @@ public class InvoiceCoreService {
         if (CollectionUtils.isEmpty(invoiceSList)) {
             invoiceSList = new ArrayList<InvoiceSubjectDto>();
         }
-        Boolean isLast = false;
-        if (remark.equals("最后一行开票")) {
-            isLast = true;
-        }
+        boolean isLast = remark.equals("最后一行开票");
         InvoiceSubjectDto invoiceSubjectDto = saveOneInvoice(smsResultDto, configDto, billSubjectDto, lastIndex, index, fristLineNote, remarkAmountSum, isLast);
         invoiceSubjectDto.setRemark(remark);
         invoiceSList.add(invoiceSubjectDto);
@@ -514,7 +511,7 @@ public class InvoiceCoreService {
 
     private static InvoiceDetailDto setInvDetailDto(final InvoiceSubjectDto invoiceSubjectDto, final BillDetailDto billDetailDto, final String invSN, final int useLineNote, final String fristLineNote, final boolean mccDistinct, final int lineNum) {
         final BigDecimal origTaxAmt = billDetailDto.getTaxAmt();
-        billDetailDto.setTaxAmt(origTaxAmt.setScale(2, 4));
+        billDetailDto.setTaxAmt(origTaxAmt.setScale(2, RoundingMode.HALF_UP));
         // final int includeTax = billDetailDto.getIncludeTax(); // 没用到
 
         final InvoiceDetailDto invoiceDETAIL = new InvoiceDetailDto();
@@ -591,7 +588,7 @@ public class InvoiceCoreService {
         }
 
         if (useLineNote == 1) {
-            if (org.apache.commons.lang3.StringUtils.isNotEmpty((CharSequence) billDetailDto.getLineNote())) {
+            if (org.apache.commons.lang3.StringUtils.isNotEmpty(billDetailDto.getLineNote())) {
                 final List<String> lineNotes = invoiceSubjectDto.getLineNotes();
                 if (mccDistinct || !lineNotes.contains(billDetailDto.getLineNote())) {
                     lineNotes.add(billDetailDto.getLineNote());
