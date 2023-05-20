@@ -27,3 +27,5 @@ classes/
 *.class
 /.factorypath
 /.springBeans
+
+*.bak
