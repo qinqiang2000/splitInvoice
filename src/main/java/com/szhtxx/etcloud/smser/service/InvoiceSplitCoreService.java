@@ -17,7 +17,7 @@ public class InvoiceSplitCoreService
     private static BackCalcUtilMethods calcUtilMethods;
     
     static {
-        InvoiceSplitCoreService.LOG = LoggerFactory.getLogger((Class)InvoiceSplitCoreService.class);
+        InvoiceSplitCoreService.LOG = LoggerFactory.getLogger(InvoiceSplitCoreService.class);
         InvoiceSplitCoreService.calcUtilMethods = new BackCalcUtilMethods();
     }
     
@@ -86,51 +86,72 @@ public class InvoiceSplitCoreService
         }
     }
     
-    public static List<BillDetailDto> goodsLineSplit(List<BillDetailDto> detailDtos, final SmruleConfigDto configDto, BigDecimal aggrAmt, final boolean hasDisLine, BigDecimal allAmount, final List<BigDecimal> splitAmounts) throws IllegalAccessException, InvocationTargetException {
-        final int splitGoodsType = configDto.getSplitGoodsWithNumber();
+    /* 
+     * 该方法首先备份了单据明细detailDtos，然后对每个商品行应用拆分规则。
+     * 如果拆分规则指定了拆分数量，则将商品行拆分为指定数量的行。
+     * 否则，将商品行拆分为数量相等的行。如果拆分后的行的数量小于指定的数量，则将剩余的金额添加到最后一行。
+     * 拆分后的行将添加到新的列表中，并返回该列表。
+     * 
+     * 在拆分过程中，该方法还会计算每个商品行的金额和税额，并根据拆分规则进行调整。
+     * 如果拆分后的行的金额或税额与原始行的金额或税额相差超过了拆分规则中指定的误差范围，则会进行递归调整，直到满足误差范围为止。
+     * 该方法还会根据拆分规则对商品行进行排序，并将折扣行与商品行进行匹配，以便在后续的拆分过程中进行处理。
+     * 最后，该方法会将拆分后的商品行列表返回。
+     * 
+     * 递归函数
+     * aggrAmt：已累计拆分金额
+     */
+    public static List<BillDetailDto> goodsLineSplit(List<BillDetailDto> detailDtos, SmruleConfigDto configDto,
+                                                     BigDecimal aggrAmt, boolean hasDisLine, BigDecimal allAmount,
+                                                     List<BigDecimal> splitAmounts) throws IllegalAccessException, InvocationTargetException {
+        int splitGoodsType = configDto.getSplitGoodsWithNumber();
         BigDecimal invLimitAmt = configDto.getFinalLimitAmt();
-        final BigDecimal lineTaxAmtErr = configDto.getLineTaxAmtErr();
-        final BigDecimal lineAmtErr = configDto.getLineAmountErr();
-        List<BillDetailDto> originDetailDtos = new ArrayList<BillDetailDto>();
-        final ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        BigDecimal lineTaxAmtErr = configDto.getLineTaxAmtErr();
+        BigDecimal lineAmtErr = configDto.getLineAmountErr();
+        List<BillDetailDto> originDetailDtos = new ArrayList<>();
+
+        // 备份detailDtos列表
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
-            final ObjectOutputStream oos = new ObjectOutputStream(bos);
+            ObjectOutputStream oos = new ObjectOutputStream(bos);
             oos.writeObject(detailDtos);
             oos.flush();
-            final ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
+            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
             originDetailDtos = (List<BillDetailDto>)ois.readObject();
         }
         catch (IOException | ClassNotFoundException e) {
-            InvoiceSplitCoreService.LOG.error("商品拆分时，备份数据异常 e={}", (Throwable)e);
+            InvoiceSplitCoreService.LOG.error("商品拆分时，备份数据异常 e={}", e);
         }
-        final BigDecimal originAggrAmt = aggrAmt;
+
+        BigDecimal originAggrAmt = aggrAmt;
+        
         int index = 0;
         int splitAmountIndex = 0;
         if (splitAmounts != null && !splitAmounts.isEmpty()) {
             invLimitAmt = splitAmounts.get(splitAmountIndex);
         }
+        
         allAmount = allAmount.subtract(aggrAmt);
         do {
-            final BillDetailDto originDto = detailDtos.get(index);
-            final BigDecimal billDetailAmount = originDto.getAmounts().add(aggrAmt);
+            BillDetailDto originDto = detailDtos.get(index);
+            BigDecimal billDetailAmount = originDto.getAmounts().add(aggrAmt);
             if (billDetailAmount.compareTo(invLimitAmt) <= 0) {
                 break;
             }
-            final BillDetailDto productDto = new BillDetailDto();
-            final BillDetailDto newProductDto = new BillDetailDto();
+            BillDetailDto productDto = new BillDetailDto();
+            BillDetailDto newProductDto = new BillDetailDto();
             if (originDto.getOriginalAmts() == null) {
                 originDto.setOriginalAmts(originDto.getAmts());
                 productDto.setOriginalAmts(originDto.getAmts());
                 newProductDto.setOriginalAmts(originDto.getAmts());
             }
             if (hasDisLine) {
-                final int disLineIndex = index + 1;
-                final BillDetailDto orginDisDto = detailDtos.get(disLineIndex);
-                final BillDetailDto disDto = new BillDetailDto();
-                final BillDetailDto newDisDto = new BillDetailDto();
+                int disLineIndex = index + 1;
+                BillDetailDto orginDisDto = detailDtos.get(disLineIndex);
+                BillDetailDto disDto = new BillDetailDto();
+                BillDetailDto newDisDto = new BillDetailDto();
                 splitLineByDis(configDto, originDto, productDto, newProductDto, orginDisDto, disDto, newDisDto, aggrAmt, invLimitAmt);
                 detailDtos.set(index, productDto);
-                final BigDecimal disAmount = disDto.getAmounts();
+                BigDecimal disAmount = disDto.getAmounts();
                 if (disAmount.compareTo(BigDecimal.ZERO) == 0) {
                     if (newProductDto.getAmounts().compareTo(BigDecimal.ZERO) == 0) {
                         break;
@@ -180,10 +201,10 @@ public class InvoiceSplitCoreService
         if (hasDisLine) {
             lastBillDetail = detailDtos.get(detailDtos.size() - 2);
         }
-        final Map<String, Integer> decimalMap = getDigitByRuleConfig(configDto);
-        final int amtNumber = decimalMap.get("amtNumber");
-        final int priceNumber = decimalMap.get("priceNumber");
-        final int includeTax = lastBillDetail.getIncludeTax();
+        Map<String, Integer> decimalMap = getDigitByRuleConfig(configDto);
+        int amtNumber = decimalMap.get("amtNumber");
+        int priceNumber = decimalMap.get("priceNumber");
+        int includeTax = lastBillDetail.getIncludeTax();
         BigDecimal price = lastBillDetail.getPrice();
         BigDecimal amts = lastBillDetail.getAmts();
         BigDecimal amounts = lastBillDetail.getAmounts();
@@ -461,17 +482,29 @@ public class InvoiceSplitCoreService
         return InvoiceSplitCoreService.calcUtilMethods.calcTaxAmtByNoTaxMoneyDec(amount, dec, taxRate, 2);
     }
     
-    private static void splitLine(final SmruleConfigDto configDto, final BillDetailDto orginDto, final BillDetailDto productDto, final BillDetailDto newProductDto, final BigDecimal aggrAmt, final BigDecimal invLimitAmt) throws IllegalAccessException, InvocationTargetException {
-        final BigDecimal dec = orginDto.getTaxDeduction();
-        final int includeTax = orginDto.getIncludeTax();
-        final BigDecimal lineAmtErr = configDto.getLineAmountErr();
-        final Map<String, Integer> decimalMap = getDigitByRuleConfig(configDto);
-        final int amtNumber = decimalMap.get("amtNumber");
-        final int priceNumber = decimalMap.get("priceNumber");
-        final BigDecimal usedAmt = invLimitAmt.subtract(aggrAmt);
+    /* 
+     * 该方法的作用是根据拆分规则将原始单据明细信息拆分成两个单据明细信息，分别为 productDto 和 newProductDto。
+     * 在拆分过程中，会根据已拆分的金额总和和单据拆分限额计算出本次拆分的金额，并更新 productDto 和 newProductDto 的相关属性值。
+     * 如果无法拆分，则直接将 productDto 的金额设置为已拆分的金额总和，将 newProductDto 的金额设置为 0。
+     * configDto：类型为 SmruleConfigDto，表示拆分规则配置信息。
+     * orginDto：类型为 BillDetailDto，表示原始单据明细信息。
+     * productDto：类型为 BillDetailDto，表示拆分后的单据明细信息。
+     * newProductDto：类型为 BillDetailDto，表示拆分后的新单据明细信息。
+     * aggrAmt：类型为 BigDecimal，表示已拆分的金额总和。
+     * invLimitAmt：类型为 BigDecimal，表示单据拆分限额。
+     */
+    private static void splitLine(SmruleConfigDto configDto, BillDetailDto orginDto, BillDetailDto productDto, 
+                                BillDetailDto newProductDto, BigDecimal aggrAmt, BigDecimal invLimitAmt) throws IllegalAccessException, InvocationTargetException {
+        BigDecimal dec = orginDto.getTaxDeduction();
+        int includeTax = orginDto.getIncludeTax();
+        BigDecimal lineAmtErr = configDto.getLineAmountErr();
+        Map<String, Integer> decimalMap = getDigitByRuleConfig(configDto);
+        int amtNumber = decimalMap.get("amtNumber");
+        int priceNumber = decimalMap.get("priceNumber");
+        BigDecimal usedAmt = invLimitAmt.subtract(aggrAmt);
         BeanUtils.copyProperties(productDto, orginDto);
         productDto.setAmounts(usedAmt);
-        final BigDecimal taxRate = productDto.getTaxRate();
+        BigDecimal taxRate = productDto.getTaxRate();
         BigDecimal amounts = productDto.getAmounts();
         BigDecimal price = productDto.getPrice();
         BigDecimal price2 = productDto.getPrice();
@@ -485,7 +518,7 @@ public class InvoiceSplitCoreService
         BigDecimal amountsInc = null;
         BigDecimal amountsInc2 = null;
         BeanUtils.copyProperties(newProductDto, orginDto);
-        final BigDecimal tmpAmountsInc = orginDto.getAmountsIncTax();
+        BigDecimal tmpAmountsInc = orginDto.getAmountsIncTax();
         if (price != null && price.compareTo(BigDecimal.ZERO) > 0) {
             priceInc = priceInc.setScale(priceNumber, 4);
             if (priceInc.compareTo(BigDecimal.ZERO) == 0) {
@@ -616,8 +649,10 @@ public class InvoiceSplitCoreService
         return isDisline;
     }
     
-    public static void BillDetailIdSplit(final BillDetailDto orginDto, final BillDetailDto productDto, final BillDetailDto newProductDto, final BillDetailDto orginDisDto, final BillDetailDto disDto, final BillDetailDto newdisDto, final SmruleConfigDto configDto) {
-        final Set<BillDetailIdDto> orginDetailIdSet = orginDto.getDetailIdSet();
+    public static void BillDetailIdSplit(BillDetailDto originDto, BillDetailDto productDto, BillDetailDto newProductDto,
+                                         BillDetailDto originDisDto, BillDetailDto disDto, BillDetailDto newdisDto,
+                                         SmruleConfigDto configDto) {
+        final Set<BillDetailIdDto> orginDetailIdSet = originDto.getDetailIdSet();
         final Iterator<BillDetailIdDto> it = orginDetailIdSet.iterator();
         final Set<BillDetailIdDto> productDetailIdSet = new LinkedHashSet<BillDetailIdDto>();
         BigDecimal sumAmount = BigDecimal.ZERO;
@@ -625,12 +660,14 @@ public class InvoiceSplitCoreService
             final BillDetailIdDto billDetailIdDto = it.next();
             sumAmount = sumAmount.add(billDetailIdDto.getAmounts());
             if (sumAmount.compareTo(productDto.getAmountsByTax()) > 0) {
-                final BigDecimal splitAomunt2 = sumAmount.subtract(productDto.getAmountsByTax());
-                final BigDecimal splitAomunt3 = billDetailIdDto.getAmounts().subtract(splitAomunt2);
-                final BigDecimal amt2 = InvoiceSplitCoreService.calcUtilMethods.recursionAmtsCut(splitAomunt2, billDetailIdDto.getPrice(), configDto.getAmtNumber(), configDto);
-                final BigDecimal amt3 = billDetailIdDto.getAmts().subtract(amt2);
-                final BillDetailIdDto splitBillDetailId1 = new BillDetailIdDto(billDetailIdDto.getBillNO(), billDetailIdDto.getBillDetailNO(), splitAomunt3, billDetailIdDto.getPrice(), amt3);
-                final BillDetailIdDto splitBillDetailId2 = new BillDetailIdDto(billDetailIdDto.getBillNO(), billDetailIdDto.getBillDetailNO(), splitAomunt2, billDetailIdDto.getPrice(), amt2);
+                BigDecimal splitAomunt2 = sumAmount.subtract(productDto.getAmountsByTax());
+                BigDecimal splitAomunt3 = billDetailIdDto.getAmounts().subtract(splitAomunt2);
+                BigDecimal amt2 = InvoiceSplitCoreService.calcUtilMethods.recursionAmtsCut(splitAomunt2, billDetailIdDto.getPrice(), configDto.getAmtNumber(), configDto);
+                BigDecimal amt3 = billDetailIdDto.getAmts().subtract(amt2);
+                BillDetailIdDto splitBillDetailId1 = new BillDetailIdDto(billDetailIdDto.getBillNO(),
+                    billDetailIdDto.getBillDetailNO(), splitAomunt3, billDetailIdDto.getPrice(), amt3, productDto.getTaxAmt());
+                BillDetailIdDto splitBillDetailId2 = new BillDetailIdDto(billDetailIdDto.getBillNO(),
+                    billDetailIdDto.getBillDetailNO(), splitAomunt2, billDetailIdDto.getPrice(), amt2, newProductDto.getTaxAmt());
                 productDetailIdSet.add(splitBillDetailId1);
                 it.remove();
                 orginDetailIdSet.add(splitBillDetailId2);
@@ -646,19 +683,23 @@ public class InvoiceSplitCoreService
         }
         productDto.setDetailIdSet(productDetailIdSet);
         newProductDto.setDetailIdSet(orginDetailIdSet);
-        if (orginDisDto != null) {
-            final Set<BillDetailIdDto> orginDisDetailIdSet = orginDisDto.getDetailIdSet();
-            final Iterator<BillDetailIdDto> disIt = orginDisDetailIdSet.iterator();
-            final Set<BillDetailIdDto> disProductDetailIdSet = new LinkedHashSet<BillDetailIdDto>();
+        if (originDisDto != null) {
+            Set<BillDetailIdDto> orginDisDetailIdSet = originDisDto.getDetailIdSet();
+            Iterator<BillDetailIdDto> disIt = orginDisDetailIdSet.iterator();
+            Set<BillDetailIdDto> disProductDetailIdSet = new LinkedHashSet<BillDetailIdDto>();
             BigDecimal sumDisAmount = BigDecimal.ZERO;
             while (disIt.hasNext()) {
-                final BillDetailIdDto billDetailIdDto2 = disIt.next();
+                BillDetailIdDto billDetailIdDto2 = disIt.next();
                 sumDisAmount = sumDisAmount.add(billDetailIdDto2.getAmounts());
                 if (sumDisAmount.compareTo(disDto.getAmountsByTax()) < 0) {
-                    final BigDecimal splitAomunt4 = sumDisAmount.subtract(disDto.getAmountsByTax());
-                    final BigDecimal splitAomunt5 = billDetailIdDto2.getAmounts().subtract(splitAomunt4);
-                    final BillDetailIdDto splitBillDetailId3 = new BillDetailIdDto(billDetailIdDto2.getBillNO(), billDetailIdDto2.getBillDetailNO(), splitAomunt5, billDetailIdDto2.getPrice(), billDetailIdDto2.getAmts());
-                    final BillDetailIdDto splitBillDetailId4 = new BillDetailIdDto(billDetailIdDto2.getBillNO(), billDetailIdDto2.getBillDetailNO(), splitAomunt4, billDetailIdDto2.getPrice(), billDetailIdDto2.getAmts());
+                    BigDecimal splitAomunt4 = sumDisAmount.subtract(disDto.getAmountsByTax());
+                    BigDecimal splitAomunt5 = billDetailIdDto2.getAmounts().subtract(splitAomunt4);
+                    BillDetailIdDto splitBillDetailId3 = new BillDetailIdDto(billDetailIdDto2.getBillNO(),
+                        billDetailIdDto2.getBillDetailNO(), splitAomunt5, billDetailIdDto2.getPrice(),
+                        billDetailIdDto2.getAmts(), disDto.getTaxAmt());
+                    BillDetailIdDto splitBillDetailId4 = new BillDetailIdDto(billDetailIdDto2.getBillNO(),
+                        billDetailIdDto2.getBillDetailNO(), splitAomunt4, billDetailIdDto2.getPrice(),
+                        billDetailIdDto2.getAmts(), newdisDto.getTaxAmt());
                     disProductDetailIdSet.add(splitBillDetailId3);
                     disIt.remove();
                     orginDisDetailIdSet.add(splitBillDetailId4);

@@ -1,0 +1,587 @@
+{
+  "bdrList": [],
+  "doFail": 0,
+  "doSucc": 1,
+  "invoiceSList": [
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.0884950000000,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f2372a",
+          "invoiceNO": "6465fbb445083e0001f23729",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f23729",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 0,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.088495,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f2372c",
+          "invoiceNO": "6465fbb445083e0001f2372b",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f2372b",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 1,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.0884941,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f2372e",
+          "invoiceNO": "6465fbb445083e0001f2372d",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f2372d",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 2,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.0884949,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f23730",
+          "invoiceNO": "6465fbb445083e0001f2372f",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f2372f",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 3,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.088495,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f23732",
+          "invoiceNO": "6465fbb445083e0001f23731",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f23731",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 4,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.088495,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f23734",
+          "invoiceNO": "6465fbb445083e0001f23733",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f23733",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 5,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.088494,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f23736",
+          "invoiceNO": "6465fbb445083e0001f23735",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f23735",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 6,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.088495,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f23738",
+          "invoiceNO": "6465fbb445083e0001f23737",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f23737",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 7,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "detailIdSet": [
+            {
+              "amounts": 999.9900000000,
+              "amts": 0.088495,
+              "billDetailNO": "1687831317703558144",
+              "billNO": "1687831317644836864",
+              "price": 11300.0000000000000
+            }
+          ],
+          "goodsCode": "1070101010100000000",
+          "goodsModel": "5KG",
+          "goodsName": "*汽油*香满园优选珍珠米（编织袋） 5kg",
+          "goodsTaxNo": "1070101010100000000",
+          "goodsUnit": "袋",
+          "includeTax": 0,
+          "invDetailErr": -0.0013,
+          "invoiceDetailNO": "6465fbb445083e0001f2373a",
+          "invoiceNO": "6465fbb445083e0001f23739",
+          "lineNum": 0,
+          "lineProperty": 0,
+          "price": 11300.00000000,
+          "priceIncTax": 12769.00000000,
+          "splitSign": 1,
+          "taxAmounts": 1129.99,
+          "taxAmt": 130.00,
+          "taxDeduction": "",
+          "taxPre": 0,
+          "taxPreCon": "",
+          "taxRate": 0.13
+        }
+      ],
+      "invoiceKind": 2,
+      "invoiceNO": "6465fbb445083e0001f23739",
+      "invoiceNote": "",
+      "invoiceProp": 0,
+      "isTaxDe": 0,
+      "lineNotes": [
+        ""
+      ],
+      "listFlag": 0,
+      "pageIndex": 8,
+      "remark": "金额累计超限开票",
+      "taxAmt": 130.00
+    },
+    {
+      "amounts": 999.99,
+      "billNO": "200_20230518181932252_0001",
+      "billNOList": [
+        "1687831317644836864"
+      ],
+      "invErr": -0.0013,
+      "invTaxRate": [
+        0.13
+      ],
+      "invoiceDetailList": [
+        {
+          "amounts": 999.99,
+          "amountsIncTax": 1129.99,
+          "amts": 0.088495,
+          "billDetailNO": "1687831317703558144",
+          "billNO": "1687831317644836864",
+          "by1": "1194121661989796666",
+          "cropGoodsNo": "...被截断了"
+        }
+      ]
+    }
+  ]
+}

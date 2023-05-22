@@ -27,7 +27,8 @@
 						"amts":9.9999990000,
 						"billDetailNO":"1687821024403392512",
 						"billNO":"1687821024403393536",
-						"price":100000.0000000000
+						"price":100000.0000000000,
+						"taxAmt":89999.99
 					}],
 					"goodsClass":"",
 					"goodsCode":"3050400000000000000",
@@ -38,8 +39,8 @@
 					"goodsUnit":"",
 					"includeTax":0,
 					"invDetailErr":0.0010,
-					"invoiceDetailNO":"646857245c441827c6c0a90d",
-					"invoiceNO":"646857245c441827c6c0a90c",
+					"invoiceDetailNO":"646a3c5ca1c45862494daf1b",
+					"invoiceNO":"646a3c5ca1c45862494daf1a",
 					"lineNum":0,
 					"lineProperty":0,
 					"price":100000.00000000,
@@ -56,7 +57,7 @@
 				}
 			],
 			"invoiceKind":51,
-			"invoiceNO":"646857245c441827c6c0a90c",
+			"invoiceNO":"646a3c5ca1c45862494daf1a",
 			"invoiceNote":"",
 			"invoiceProp":0,
 			"isTaxDe":0,
@@ -94,7 +95,8 @@
 						"amts":0.000001,
 						"billDetailNO":"1687821024403392512",
 						"billNO":"1687821024403393536",
-						"price":100000.0000000000
+						"price":100000.0000000000,
+						"taxAmt":0.0100000000
 					}],
 					"goodsClass":"",
 					"goodsCode":"3050400000000000000",
@@ -105,8 +107,8 @@
 					"goodsUnit":"",
 					"includeTax":0,
 					"invDetailErr":-0.0010,
-					"invoiceDetailNO":"646857245c441827c6c0a90f",
-					"invoiceNO":"646857245c441827c6c0a90e",
+					"invoiceDetailNO":"646a3c74a1c45862494daf1d",
+					"invoiceNO":"646a3c74a1c45862494daf1c",
 					"lineNum":0,
 					"lineProperty":0,
 					"price":100000.00000000,
@@ -123,7 +125,7 @@
 				}
 			],
 			"invoiceKind":51,
-			"invoiceNO":"646857245c441827c6c0a90e",
+			"invoiceNO":"646a3c74a1c45862494daf1c",
 			"invoiceNote":"",
 			"invoiceProp":0,
 			"isTaxDe":0,
